@@ -7,14 +7,15 @@ public class Player : MonoBehaviour
     public Rigidbody2D oRigidbody2D;
     public GameObject laserDoJogador;
     public Transform localDisparo;
-
     public float velNave;
     private Vector2 teclas;
+    public int vidaAtual;
+    public int vidaMax;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        vidaAtual = vidaMax;
     }
 
     // Update is called once per frame
@@ -32,6 +33,18 @@ public class Player : MonoBehaviour
     void Atk(){
         if(Input.GetButtonDown("Fire1")){
             Instantiate(laserDoJogador, localDisparo.position, localDisparo.rotation);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.CompareTag("enemy"))
+            Destroy(gameObject);
+    }
+
+    public void danoPlayer(int dano_player){
+        vidaAtual -= dano_player;
+        if(vidaAtual <= 0){
+            Destroy(this.gameObject);
         }
     }
 

@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserSpeed: 10
+  dano: 1
 --- !u!114 &-4206638879997524315
 MonoBehaviour:
   m_ObjectHideFlags: 0

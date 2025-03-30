@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8851718172975416620}
   - component: {fileID: -8508516362307176142}
   m_Layer: 0
-  m_Name: laser_enemy1)
+  m_Name: laser_enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6199153260349793919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -3.745, y: -0.004, z: 0}
   m_LocalScale: {x: 0.04, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &365491406402833404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -189,4 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e60359dfdcbfc469c69852190652b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoVida: 2.5
+  tempoVida: 3.3

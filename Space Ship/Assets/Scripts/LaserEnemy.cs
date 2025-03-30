@@ -24,7 +24,7 @@ public class LaserEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<Vida>().damage(dano);
+            other.gameObject.GetComponent<Player>().danoPlayer(dano);
             Destroy(this.gameObject);
         }
     }

@@ -125,11 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50413d1eb2d4bb4daf6d76904e9d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  min_Y: -3.53
-  max_Y: 3.53
-  tiro_player: {fileID: 6486790407996170203, guid: 4b99c146e67a9224a90c2e488440ae94, type: 3}
-  atk_point: {fileID: 2718262016130417687}
+  oRigidbody2D: {fileID: 0}
+  laserDoJogador: {fileID: 0}
+  localDisparo: {fileID: 0}
+  velNave: 3
+  vidaAtual: 0
+  vidaMax: 5
 --- !u!50 &298493016883695996
 Rigidbody2D:
   serializedVersion: 4

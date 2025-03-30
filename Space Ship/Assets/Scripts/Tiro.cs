@@ -22,11 +22,11 @@ public class Tiro : MonoBehaviour
         transform.Translate(Vector3.up * LaserSpeed * Time.deltaTime);
     }
 
-    OnTriggerEnter2D(Collider other){
+    void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("enemy")){
-            other.gameObject.GetComponente<enemy>().danoInimigo(dano);
-            Destroy(gameObject);
-        }
+            other.gameObject.GetComponent<enemy>().danoInimigo(dano);
+            Destroy(this.gameObject);
     }
+}
     
 }

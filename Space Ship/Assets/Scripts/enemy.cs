@@ -25,7 +25,6 @@ public class enemy : MonoBehaviour
 
         if(atiradorxd == true)
             AtirarLaser();
-
     }
 
     private void MoveEnemy(){
@@ -36,7 +35,7 @@ public class enemy : MonoBehaviour
         tempoAtualLasers -= Time.deltaTime;
 
         if(tempoAtualLasers <= 0){
-            Instantiate(laserEnemy, localShoot.position, Quaternion.Euler(0f,0f,0f));
+            Instantiate(laserEnemy, localShoot.position, Quaternion.Euler(0f,0f,90f));
             tempoAtualLasers = tempoMaxLasers;
         }
     }
@@ -49,7 +48,7 @@ public class enemy : MonoBehaviour
     public void danoInimigo(int damage_inimigo){
         vidaAtual -= damage_inimigo;
         if(vidaAtual <= 0){
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
