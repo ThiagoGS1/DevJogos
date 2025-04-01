@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2a111a803b6c248b302cd4c8d5869e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelLaser: 3
-  dano: 0
+  VelLaser: 10
+  dano: 1
 --- !u!114 &-8508516362307176142
 MonoBehaviour:
   m_ObjectHideFlags: 0

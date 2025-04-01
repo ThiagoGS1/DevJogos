@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d6233d272acd240be0cf3bcd844ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaserSpeed: 10
+  LaserSpeed: 15
   dano: 1
 --- !u!114 &-4206638879997524315
 MonoBehaviour:

@@ -12,9 +12,12 @@ public class enemy : MonoBehaviour
     public int vidaAtual;
     public int vidaMax;
     public bool atiradorxd;
+    public bool inimigoOn;
+    public int pontosParaDar;
     // Start is called before the first frame update
     void Start()
     {
+        inimigoOn = false;
         vidaAtual = vidaMax;
     }
 
@@ -23,12 +26,16 @@ public class enemy : MonoBehaviour
     {
         MoveEnemy();
 
-        if(atiradorxd == true)
+        if(atiradorxd == true && inimigoOn == true)
             AtirarLaser();
     }
 
+    public void AtivarInimigo(){
+        inimigoOn = true;
+    }
+    
     private void MoveEnemy(){
-        transform.Translate(Vector3.down * velEnemy * Time.deltaTime);
+        transform.Translate(Vector3.right * velEnemy * Time.deltaTime);
     }
 
     private void AtirarLaser(){
@@ -48,6 +55,7 @@ public class enemy : MonoBehaviour
     public void danoInimigo(int damage_inimigo){
         vidaAtual -= damage_inimigo;
         if(vidaAtual <= 0){
+            GameManager.instance.pontuar(pontosParaDar);
             Destroy(this.gameObject);
         }
     }

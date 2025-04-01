@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Slider barraDeVidaJogador;
     public Rigidbody2D oRigidbody2D;
     public GameObject laserDoJogador;
     public Transform localDisparo;
@@ -16,6 +18,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         vidaAtual = vidaMax;
+        barraDeVidaJogador.maxValue = vidaMax;
+        barraDeVidaJogador.value = vidaAtual;
     }
 
     // Update is called once per frame
@@ -43,7 +47,11 @@ public class Player : MonoBehaviour
 
     public void danoPlayer(int dano_player){
         vidaAtual -= dano_player;
+
+        barraDeVidaJogador.value = vidaAtual;
+        
         if(vidaAtual <= 0){
+            GameManager.instance.GameOver();
             Destroy(this.gameObject);
         }
     }
