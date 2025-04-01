@@ -36,5 +36,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(){
         painelGameOver.SetActive(true);
+        Debug.Log("Verificar");
     }
 }

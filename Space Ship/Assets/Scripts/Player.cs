@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
     {
         Move();
         Atk();
+        if (vidaAtual <= 0)
+        {
+            GameManager.instance.GameOver(); // Chama a função GameOver do GameManager
+        }
     }
 
     void Move(){

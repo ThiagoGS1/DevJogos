@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nightraiderfixed_0: 4508186440353238757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
