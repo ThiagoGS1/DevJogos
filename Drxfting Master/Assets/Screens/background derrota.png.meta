@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      background derrota_0: 3353989753791856268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

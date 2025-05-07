@@ -243,7 +243,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "po\xE7a-removebg-preview_0": 7049243803019271743
+      "po\xE7a-removebg-preview_1": -3570268492490666877
+      "po\xE7a-removebg-preview_2": -2369491360963338927
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

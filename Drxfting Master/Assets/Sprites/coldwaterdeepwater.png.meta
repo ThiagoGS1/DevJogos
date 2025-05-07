@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      coldwaterdeepwater_0: 8152631347718005952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

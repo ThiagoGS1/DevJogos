@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nitro_0: -2478051128762440981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

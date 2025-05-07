@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      background vitoria_0: -2424543653222307513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lucky box_0: -5648174729904977832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
