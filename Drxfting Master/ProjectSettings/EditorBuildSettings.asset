@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: bec62098aeea28746b7996b2453658e2
   - enabled: 1
-    path: Assets/Scenes/Course1.unity
+    path: Assets/Scenes/Stage2.unity
     guid: b0205ab0c21af6942929bdaadfb21b18
   - enabled: 1
     path: Assets/Scenes/Example cases/TouchInput.unity
@@ -20,4 +20,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Example cases/SpawnCar.unity
     guid: 7bd6c5c37190e184497fa71a848a8552
+  - enabled: 1
+    path: Assets/Scenes/Stage1.unity
+    guid: a0a9c646c472433448563fc9297b15e5
+  - enabled: 1
+    path: Assets/Scenes/Stage3.unity
+    guid: c514aa0e8a735a44f8c711ae166f58d3
+  - enabled: 1
+    path: Assets/Scenes/Stage4.unity
+    guid: 5eba7b660b1380e47927b3228a129d98
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
