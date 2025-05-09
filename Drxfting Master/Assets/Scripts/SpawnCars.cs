@@ -6,6 +6,8 @@ using System.Linq;
 public class SpawnCars : MonoBehaviour
 {
     int numberOfCarsSpawned = 0;
+    private GameObject car;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +44,7 @@ public class SpawnCars : MonoBehaviour
                 if (cardata.CarUniqueID == selectedCarID)
                 {
                     //Now spawn it on the spawnpoint
-                    GameObject car = Instantiate(cardata.CarPrefab, spawnPoint.position, spawnPoint.rotation);
+                    car = Instantiate(cardata.CarPrefab, spawnPoint.position, spawnPoint.rotation);
 
                     car.name = driverInfo.name;
 
@@ -74,6 +76,11 @@ public class SpawnCars : MonoBehaviour
     public int GetNumberOfCarsSpawned()
     {
         return numberOfCarsSpawned;
+    }
+
+    void Update()
+    {
+        cam.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, cam.transform.position.z);
     }
 
 }
