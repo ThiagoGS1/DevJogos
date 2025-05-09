@@ -7,6 +7,7 @@ public class SpawnCars : MonoBehaviour
 {
     int numberOfCarsSpawned = 0;
     private GameObject car;
+    private GameObject playerCar; // Reference to player's car
     public Camera cam;
 
     // Start is called before the first frame update
@@ -60,6 +61,7 @@ public class SpawnCars : MonoBehaviour
                         car.GetComponent<CarAIHandler>().enabled = false;
                         car.GetComponent<AStarLite>().enabled = false;
                         car.tag = "Player";
+                        playerCar = car; // Store reference to player's car
                     }
 
                     numberOfCarsSpawned++;
@@ -80,7 +82,17 @@ public class SpawnCars : MonoBehaviour
 
     void Update()
     {
-        cam.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, cam.transform.position.z);
+        // Find object with Player tag if we don't have the reference
+        if (playerCar == null)
+        {
+            playerCar = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        // Only update camera position if we found the player
+        if (playerCar != null)
+        {
+            cam.transform.position = new Vector3(playerCar.transform.position.x, playerCar.transform.position.y, cam.transform.position.z);
+        }
     }
 
 }
