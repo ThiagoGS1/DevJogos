@@ -9,10 +9,15 @@ public class SpawnCars : MonoBehaviour
     private GameObject car;
     private GameObject playerCar; // Reference to player's car
     public Camera cam;
+    [Header("Camera Settings")]
+    public float cameraZoom = 5f;  // Para câmera ortográfica (valor menor = mais zoom)
+    public float cameraFieldOfView = 40f;  // Para câmera perspectiva (valor menor = mais zoom)
 
     // Start is called before the first frame update
     void Start()
     {
+        // Aplicar configurações de zoom à câmera
+        ApplyCameraZoom();
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         //Ensure that the spawn points are sorted by name
@@ -92,6 +97,23 @@ public class SpawnCars : MonoBehaviour
         if (playerCar != null)
         {
             cam.transform.position = new Vector3(playerCar.transform.position.x, playerCar.transform.position.y, cam.transform.position.z);
+        }
+    }
+
+    private void ApplyCameraZoom()
+    {
+        if (cam == null)
+            return;
+
+        if (cam.orthographic)
+        {
+            // Para câmera ortográfica
+            cam.orthographicSize = cameraZoom;
+        }
+        else
+        {
+            // Para câmera perspectiva
+            cam.fieldOfView = cameraFieldOfView;
         }
     }
 
