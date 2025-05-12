@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fire-emblem-awakening-text-box-rectangular-brown-panel-png-clipart 1_0: 7050500229548666835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

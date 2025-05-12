@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      neighbourhood afternoon_0: -8797313095236663809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
