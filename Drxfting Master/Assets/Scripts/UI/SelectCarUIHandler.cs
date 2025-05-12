@@ -78,7 +78,7 @@ public class SelectCarUIHandler : MonoBehaviour
     {
         GameManager.instance.ClearDriversList();
 
-        GameManager.instance.AddDriverToList(1, "P1", carDatas[selectedCarIndex].CarUniqueID, false);
+        GameManager.instance.AddDriverToList(1, "Takumi Fujiwara (You)", carDatas[selectedCarIndex].CarUniqueID, false);
 
         //Create a new list of cars
         List<CarData> uniqueCars = new List<CarData>(carDatas);
@@ -86,7 +86,7 @@ public class SelectCarUIHandler : MonoBehaviour
         //Remove the car that player has selected
         uniqueCars.Remove(carDatas[selectedCarIndex]);
 
-        string[] names = { "Freddy", "Eddy", "Teddy", "Buddy", "Luddy", "Puddy" };
+        string[] names = { "Keisuke Takahashi", "Natsuki Mogi", "Ryosuke Takahashi", "Shingo Shouji", "Takeshi Nakazato"};
         List<string> uniqueNames = names.ToList<string>();
 
         //Add AI drivers
@@ -101,7 +101,7 @@ public class SelectCarUIHandler : MonoBehaviour
 
         }
 
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene("fase2");
     }
 
     IEnumerator SpawnCarCO(bool isCarAppearingOnRightSide)

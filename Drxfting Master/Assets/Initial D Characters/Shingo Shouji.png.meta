@@ -168,12 +168,12 @@ TextureImporter:
       name: Shingo Shouji_0
       rect:
         serializedVersion: 2
-        x: 394
-        y: 23
-        width: 608
-        height: 1017
+        x: 492
+        y: 140
+        width: 510
+        height: 900
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,7 +188,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 54b31737a7ddb5a458d57433d79fd228
     internalID: 0
     vertices: []
     indices: 
