@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,20 @@ public class TopDownCarController : MonoBehaviour
     public float driftFactor = 0.95f;
     public float accelerationFactor = 30.0f;
     public float turnFactor = 3.5f;
-    public float maxSpeed = 20;
+    public float maxSpeed = 15;
+
+    [Header("Drift Effects")]
+    public TrailRenderer leftWheelTrail;
+    public TrailRenderer rightWheelTrail;
+    public ParticleSystem leftWheelSmoke;
+    public ParticleSystem rightWheelSmoke;
+    public float driftThreshold = 2.0f;
+    public Color driftTrailColor = Color.black;
+
+    [Header("Wheels")]
+    public Transform frontLeftWheel;
+    public Transform frontRightWheel;
+    public float maxWheelTurnAngle = 30f;
 
     [Header("Sprites")]
     public SpriteRenderer carSpriteRenderer;
@@ -39,6 +53,16 @@ public class TopDownCarController : MonoBehaviour
         carRigidbody2D = GetComponent<Rigidbody2D>();
         carCollider = GetComponentInChildren<Collider2D>();
         carSfxHandler = GetComponent<CarSFXHandler>();
+
+        if (leftWheelTrail != null)
+            leftWheelTrail.emitting = false;
+        if (rightWheelTrail != null)
+            rightWheelTrail.emitting = false;
+
+        if (leftWheelTrail != null)
+            leftWheelTrail.startColor = driftTrailColor;
+        if (rightWheelTrail != null)
+            rightWheelTrail.startColor = driftTrailColor;
     }
 
     void Start()
@@ -53,10 +77,10 @@ public class TopDownCarController : MonoBehaviour
             return;
 
         ApplyEngineForce();
-
         KillOrthogonalVelocity();
-
         ApplySteering();
+        UpdateWheelVisuals();
+        UpdateDriftEffects();
     }
 
     void ApplyEngineForce()
@@ -129,18 +153,106 @@ public class TopDownCarController : MonoBehaviour
         if (isJumping)
             return false;
 
-        //Check if we are moving forward and if the player is hitting the brakes. In that case the tires should screech.
         if (accelerationInput < 0 && velocityVsUp > 0)
         {
             isBraking = true;
             return true;
         }
 
-        //If we have a lot of side movement then the tires should be screeching
-        if (Mathf.Abs(GetLateralVelocity()) > 4.0f)
+        if (Mathf.Abs(GetLateralVelocity()) > 2.0f)
+            return true;
+
+        if (Mathf.Abs(steeringInput) > 0.8f && velocityVsUp > maxSpeed * 0.5f)
             return true;
 
         return false;
+    }
+
+    void UpdateDriftEffects()
+    {
+        float lateralVelocity = Mathf.Abs(GetLateralVelocity());
+        bool isDrifting = lateralVelocity > driftThreshold;
+        bool isBraking = accelerationInput < 0 && velocityVsUp > 0;
+        bool isSharpTurning = Mathf.Abs(steeringInput) > 0.8f && velocityVsUp > maxSpeed * 0.5f;
+        bool shouldShowEffects = isDrifting || isBraking || isSharpTurning;
+
+        if (leftWheelTrail != null)
+            leftWheelTrail.emitting = shouldShowEffects;
+        if (rightWheelTrail != null)
+            rightWheelTrail.emitting = shouldShowEffects;
+
+        if (shouldShowEffects)
+        {
+            float effectIntensity = Mathf.Clamp01(lateralVelocity / 6.0f);
+
+            if (leftWheelSmoke != null)
+            {
+                if (!leftWheelSmoke.isPlaying)
+                    leftWheelSmoke.Play();
+                var mainModule = leftWheelSmoke.main;
+                mainModule.startSizeMultiplier = 0.7f + effectIntensity * 0.8f;
+            }
+
+            if (rightWheelSmoke != null)
+            {
+                if (!rightWheelSmoke.isPlaying)
+                    rightWheelSmoke.Play();
+                var mainModule = rightWheelSmoke.main;
+                mainModule.startSizeMultiplier = 0.7f + effectIntensity * 0.8f;
+            }
+        }
+        else
+        {
+            if (leftWheelSmoke != null && leftWheelSmoke.isPlaying)
+                leftWheelSmoke.Stop();
+            if (rightWheelSmoke != null && rightWheelSmoke.isPlaying)
+                rightWheelSmoke.Stop();
+        }
+    }
+
+    void UpdateWheelVisuals()
+    {
+        if (frontLeftWheel != null && frontRightWheel != null)
+        {
+            float wheelAngle = steeringInput * maxWheelTurnAngle;
+            frontLeftWheel.localRotation = Quaternion.Euler(0, 0, wheelAngle);
+            frontRightWheel.localRotation = Quaternion.Euler(0, 0, wheelAngle);
+
+            float lateralVelocity = Mathf.Abs(GetLateralVelocity());
+            bool isBraking = accelerationInput < 0 && velocityVsUp > 0;
+
+            if (lateralVelocity > driftThreshold || isBraking)
+            {
+                float driftExtraAngle = Mathf.Sign(steeringInput) * 30f;
+                frontLeftWheel.localRotation = Quaternion.Euler(0, 0, wheelAngle + driftExtraAngle);
+                frontRightWheel.localRotation = Quaternion.Euler(0, 0, wheelAngle + driftExtraAngle);
+
+                float scaleFactor = 1.0f + (lateralVelocity - driftThreshold) * 0.025f;
+                if (isBraking) scaleFactor += 0.05f;
+                scaleFactor = Mathf.Clamp(scaleFactor, 1.0f, 1.25f);
+
+                frontLeftWheel.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                frontRightWheel.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+
+                if (lateralVelocity > driftThreshold * 1.5f || isBraking)
+                {
+                    float shakeAmount = 0.03f * Mathf.Sin(Time.time * 40);
+                    Vector3 basePos = frontLeftWheel.localPosition;
+                    frontLeftWheel.localPosition = new Vector3(basePos.x, basePos.y + shakeAmount, basePos.z);
+                    basePos = frontRightWheel.localPosition;
+                    frontRightWheel.localPosition = new Vector3(basePos.x, basePos.y - shakeAmount, basePos.z);
+                }
+            }
+            else
+            {
+                frontLeftWheel.localScale = Vector3.one;
+                frontRightWheel.localScale = Vector3.one;
+                Vector3 leftBasePos = frontLeftWheel.localPosition;
+                Vector3 rightBasePos = frontRightWheel.localPosition;
+                frontLeftWheel.localPosition = new Vector3(leftBasePos.x, 0, leftBasePos.z);
+                frontRightWheel.localPosition = new Vector3(rightBasePos.x, 0, rightBasePos.z);
+            }
+        }
     }
 
     public void SetInputVector(Vector2 inputVector)
@@ -166,95 +278,64 @@ public class TopDownCarController : MonoBehaviour
 
         float jumpStartTime = Time.time;
         float jumpDuration = carRigidbody2D.velocity.magnitude * 0.05f;
+        jumpDuration = Mathf.Clamp(jumpDuration, 0.3f, 0.6f);
 
-        jumpHeightScale = jumpHeightScale * carRigidbody2D.velocity.magnitude * 0.05f;
-        jumpHeightScale = Mathf.Clamp(jumpHeightScale, 0.0f, 1.0f);
+        jumpHeightScale = jumpHeightScale * carRigidbody2D.velocity.magnitude * 0.01f;
+        jumpHeightScale = Mathf.Clamp(jumpHeightScale, 0.1f, 0.3f);
 
-        //Change the layer of the car, as we have jumped we are now flying
         carCollider.gameObject.layer = LayerMask.NameToLayer("ObjectFlying");
-
         carSfxHandler.PlayJumpSfx();
 
-        //Change sorting layer to flying
         carSpriteRenderer.sortingLayerName = "Flying";
         carShadowRenderer.sortingLayerName = "Flying";
 
-        //Push the object forward as we passed a jump
-        carRigidbody2D.AddForce(carRigidbody2D.velocity.normalized * jumpPushScale * 10, ForceMode2D.Impulse);
+        carRigidbody2D.AddForce(carRigidbody2D.velocity.normalized * jumpPushScale, ForceMode2D.Impulse);
 
         while (isJumping)
         {
-            //Percentage 0 - 1.0 of where we are in the jumping process
             float jumpCompletedPercentage = (Time.time - jumpStartTime) / jumpDuration;
             jumpCompletedPercentage = Mathf.Clamp01(jumpCompletedPercentage);
 
-            //Take the base scale of 1 and add how much we should increase the scale with. 
             carSpriteRenderer.transform.localScale = Vector3.one + Vector3.one * jumpCurve.Evaluate(jumpCompletedPercentage) * jumpHeightScale;
-
-            //Change the shadow scale also but make it a bit smaller. In the real world this should be the opposite, the higher an object gets the larger its shadow gets but this looks better in my opinion
             carShadowRenderer.transform.localScale = carSpriteRenderer.transform.localScale * 0.75f;
-
-            //Offset the shadow a bit. This is not 100% correct either but works good enough in our game. 
             carShadowRenderer.transform.localPosition = new Vector3(1, -1, 0.0f) * 3 * jumpCurve.Evaluate(jumpCompletedPercentage) * jumpHeightScale;
 
-            //When we reach 100% we are done
             if (jumpCompletedPercentage == 1.0f)
                 break;
 
             yield return null;
         }
 
-        //Disable the car collider so we can perform an overlapped check 
         carCollider.enabled = false;
 
-        //Do not check for collisions with triggers
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.useTriggers = false;
+        contactFilter2D.SetLayerMask(Physics2D.GetLayerCollisionMask(carColliderLayerBeforeJump));
 
-        Collider2D[] hitResults = new Collider2D[2];
-
+        Collider2D[] hitResults = new Collider2D[3];
         int numberOfHitObjects = Physics2D.OverlapCircle(transform.position, 1.5f, contactFilter2D, hitResults);
 
-        //Enable the car collider again so we can detect things with the trigger. 
         carCollider.enabled = true;
 
-        //Check if landing is ok or not, if we hit zero objects then it is ok
-        if (numberOfHitObjects != 0)
+        carSpriteRenderer.transform.localScale = Vector3.one;
+        carShadowRenderer.transform.localPosition = Vector3.zero;
+        carShadowRenderer.transform.localScale = carSpriteRenderer.transform.localScale;
+        carCollider.gameObject.layer = carColliderLayerBeforeJump;
+        carSpriteRenderer.sortingLayerName = "Default";
+        carShadowRenderer.sortingLayerName = "Default";
+
+        if (numberOfHitObjects > 0)
         {
-            //Something is below the car so we need to jump again
-            isJumping = false;
-
-            //add a small jump and push the car forward a bit. 
-            Jump(0.2f, 0.6f, carColliderLayerBeforeJump);
+            transform.position += Vector3.up * 0.2f;
         }
-        else
+
+        if (jumpHeightScale > 0.2f)
         {
-            //Handle landing, scale back the object
-            carSpriteRenderer.transform.localScale = Vector3.one;
-
-            //reset the shadows position and scale
-            carShadowRenderer.transform.localPosition = Vector3.zero;
-            carShadowRenderer.transform.localScale = carSpriteRenderer.transform.localScale;
-
-            //We are safe to land, so enable change the collision layer back to what it was before we jumped
-            carCollider.gameObject.layer = carColliderLayerBeforeJump;
-
-
-            //Change sorting layer to regular layer
-            carSpriteRenderer.sortingLayerName = "Default";
-            carShadowRenderer.sortingLayerName = "Default";
-
-            //Play the landing particle system if it is a bigger jump
-            if (jumpHeightScale > 0.2f)
-            {
-                landingParticleSystem.Play();
-
-                carSfxHandler.PlayLandingSfx();
-            }
-
-            //Change state
-            isJumping = false;
+            landingParticleSystem.Play();
+            carSfxHandler.PlayLandingSfx();
         }
+
+        isJumping = false;
     }
 
     public bool IsJumping()

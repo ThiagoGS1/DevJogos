@@ -74,35 +74,35 @@ public class SelectCarUIHandler : MonoBehaviour
         StartCoroutine(SpawnCarCO(false));
     }
 
-    public void OnSelectCar()
+public void OnSelectCar()
+{
+    GameManager.instance.ClearDriversList();
+
+    GameManager.instance.AddDriverToList(1, "Takumi Fujiwara (You)", carDatas[selectedCarIndex].CarUniqueID, false);
+
+    //Create a new list of cars
+    List<CarData> uniqueCars = new List<CarData>(carDatas);
+
+    //Remove the car that player has selected
+    uniqueCars.Remove(carDatas[selectedCarIndex]);
+
+    string[] names = { "Keisuke Takahashi", "Natsuki Mogi", "Ryosuke Takahashi", "Shingo Shouji", "Takeshi Nakazato"};
+    List<string> uniqueNames = names.ToList<string>();
+
+    //Add AI drivers
+    for (int i = 2; i < 5; i++)
     {
-        GameManager.instance.ClearDriversList();
+        string driverName = uniqueNames[Random.Range(0, uniqueNames.Count)];
+        uniqueNames.Remove(driverName);
 
-        GameManager.instance.AddDriverToList(1, "Takumi Fujiwara (You)", carDatas[selectedCarIndex].CarUniqueID, false);
+        CarData carData = uniqueCars[Random.Range(0, uniqueCars.Count)];
 
-        //Create a new list of cars
-        List<CarData> uniqueCars = new List<CarData>(carDatas);
-
-        //Remove the car that player has selected
-        uniqueCars.Remove(carDatas[selectedCarIndex]);
-
-        string[] names = { "Keisuke Takahashi", "Natsuki Mogi", "Ryosuke Takahashi", "Shingo Shouji", "Takeshi Nakazato"};
-        List<string> uniqueNames = names.ToList<string>();
-
-        //Add AI drivers
-        for (int i = 2; i < 5; i++)
-        {
-            string driverName = uniqueNames[Random.Range(0, uniqueNames.Count)];
-            uniqueNames.Remove(driverName);
-
-            CarData carData = uniqueCars[Random.Range(0, uniqueCars.Count)];
-
-            GameManager.instance.AddDriverToList(i, driverName, carData.CarUniqueID, true);
-
-        }
-
-        SceneManager.LoadScene("fase2");
+        GameManager.instance.AddDriverToList(i, driverName, carData.CarUniqueID, true);
     }
+
+    // Inicia a sequência do jogo
+    GameManager.instance.StartGameSequence();
+}
 
     IEnumerator SpawnCarCO(bool isCarAppearingOnRightSide)
     {
