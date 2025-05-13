@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Sequência de cenas do jogo (diálogos e fases)
     [SerializeField]
     private List<GameScene> gameSequence = null;
-    
+
     private int currentSequenceIndex = 0;
     
     // Manter compatibilidade com código existente
@@ -64,22 +64,25 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-        
-        // Inicializar a lista de cenas programaticamente para evitar problemas com serialização
+
+        // Initialize scene sequence programmatically
         if (gameSequence == null)
             gameSequence = new List<GameScene>();
-            
-        // Limpar a lista para remover qualquer cena serializada indesejada
+
+        // Clear list to remove any unwanted serialized scenes
         gameSequence.Clear();
-        
-        // Adicionar apenas as cenas que queremos usar
+
+        // Add only the scenes we want to use
         gameSequence.Add(new GameScene { sceneName = "Dialogue1", sceneType = SceneType.Dialogue });
-        gameSequence.Add(new GameScene { sceneName = "fase1", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "Dialogue2", sceneType = SceneType.Dialogue });
+        gameSequence.Add(new GameScene { sceneName = "fase", sceneType = SceneType.Race });
+        gameSequence.Add(new GameScene { sceneName = "Dialogue3", sceneType = SceneType.Dialogue });
+        gameSequence.Add(new GameScene { sceneName = "Dialogue4", sceneType = SceneType.Dialogue });
+        gameSequence.Add(new GameScene { sceneName = "Dialogue5", sceneType = SceneType.Dialogue });
+        gameSequence.Add(new GameScene { sceneName = "fase1", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "fase2", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "DialogueWin", sceneType = SceneType.Dialogue });
-        
-        // Verifica se todas as cenas estão disponíveis
+
         CheckSceneAvailability();
     }
 
@@ -265,7 +268,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Carrega a próxima cena na sequência
-    private IEnumerator LoadNextScene()
+    public IEnumerator LoadNextScene()
     {
         // Aguarda alguns segundos para mostrar resultados, etc.
         yield return new WaitForSeconds(5f);

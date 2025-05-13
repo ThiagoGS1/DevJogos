@@ -23,9 +23,10 @@ public class DialogueManager : MonoBehaviour
     // Dados para controlar qual personagem fala cada linha
     [SerializeField] private int[] lineToCharacterIndex; // Índice do personagem para cada linha
     
-    [SerializeField] private string nextSceneName = "";
-    [SerializeField] private int nextSceneIndex = -1;
-    [SerializeField] private bool useSceneName = false;
+    // Removido os campos específicos de cena
+    // [SerializeField] private string nextSceneName = "";
+    // [SerializeField] private int nextSceneIndex = -1;
+    // [SerializeField] private bool useSceneName = false;
 
     private int currentLineIndex;
     private bool isDialogueActive = false;
@@ -131,22 +132,28 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
         dialogueText.text = "";
 
-        // Carrega a próxima cena
-        if (useSceneName && !string.IsNullOrEmpty(nextSceneName))
+        // Usando o GameManager para carregar a próxima cena na sequência
+        if (GameManager.instance != null)
         {
-            // Carrega pelo nome da cena
-            SceneManager.LoadScene(nextSceneName);
-        }
-        else if (nextSceneIndex >= 0)
-        {
-            // Carrega pelo índice da cena
-            SceneManager.LoadScene(nextSceneIndex);
+            // Inicia uma rotina para carregar a próxima cena usando o GameManager
+            StartCoroutine(LoadNextSceneWithDelay());
         }
         else
         {
-            // Carrega a próxima cena sequencialmente
+            // Fallback caso o GameManager não esteja disponível
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.LogWarning("GameManager não encontrado! Carregando próxima cena sequencialmente.");
         }
+    }
+    
+    // Coroutine para carregar a próxima cena com pequeno delay
+    private IEnumerator LoadNextSceneWithDelay()
+    {
+        // Pequeno delay para garantir que o diálogo seja fechado
+        yield return new WaitForSeconds(0.5f);
+        
+        // Usa o GameManager para carregar a próxima cena na sequência
+        GameManager.instance.StartCoroutine(GameManager.instance.LoadNextScene());
     }
     
     // Atualiza as informações do personagem (ícone e nome)
