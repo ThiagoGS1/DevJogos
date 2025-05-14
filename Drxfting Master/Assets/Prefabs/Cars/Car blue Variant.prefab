@@ -5,13 +5,14 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6558350185083141112, guid: d017faad03b9aa946ab12ed85bb3607f,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ee1aab621dfc35946979dba57cfb8371,
+      objectReference: {fileID: -3167112186661639278, guid: aaf76072bebb07e47bc809e5aa64b2af,
         type: 3}
     - target: {fileID: 6558350185343971732, guid: d017faad03b9aa946ab12ed85bb3607f,
         type: 3}
@@ -71,7 +72,15 @@ PrefabInstance:
     - target: {fileID: 6558350185343971735, guid: d017faad03b9aa946ab12ed85bb3607f,
         type: 3}
       propertyPath: m_Name
-      value: Car blue
+      value: Car blue Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558350185343971738, guid: d017faad03b9aa946ab12ed85bb3607f,
+        type: 3}
+      propertyPath: carSpriteRenderer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d017faad03b9aa946ab12ed85bb3607f, type: 3}

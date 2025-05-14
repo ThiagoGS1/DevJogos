@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 0_RacerYellow
   m_EditorClassIdentifier: 
   carUniqueID: 2
-  carUISprite: {fileID: 21300000, guid: 12073ed89ab0b2141ab77e8b3f82b590, type: 3}
+  carUISprite: {fileID: 187103957579507519, guid: 79424533b74a7774c93ad0692ca7f4a7,
+    type: 3}
   carPrefab: {fileID: 2270505423482287099, guid: c4b4d956ed8ba02478ffb573531d2beb,
     type: 3}

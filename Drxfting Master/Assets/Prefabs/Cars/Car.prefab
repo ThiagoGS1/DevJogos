@@ -11409,7 +11409,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6641cab282c87504dbb08673616a03bb, type: 3}
+  m_Sprite: {fileID: 2864579089114263980, guid: 9eb5066aa065f5d41b3fc9d20a593ca2,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11509,6 +11510,15 @@ MonoBehaviour:
   accelerationFactor: 4
   turnFactor: 3.5
   maxSpeed: 10
+  leftWheelTrail: {fileID: 0}
+  rightWheelTrail: {fileID: 0}
+  leftWheelSmoke: {fileID: 0}
+  rightWheelSmoke: {fileID: 0}
+  driftThreshold: 2
+  driftTrailColor: {r: 0, g: 0, b: 0, a: 1}
+  frontLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
+  maxWheelTurnAngle: 30
   carSpriteRenderer: {fileID: 6558350185083141112}
   carShadowRenderer: {fileID: 733638173380642315}
   jumpCurve:
