@@ -38,9 +38,22 @@ public class CarInputHandler : MonoBehaviour
             switch (playerNumber)
             {
                 case 1:
-                    //Get input from Unity's input system.
-                    inputVector.x = Input.GetAxis("Horizontal_P1");
-                    inputVector.y = Input.GetAxis("Vertical_P1");
+                    // Get input from arrow keys via Unity's input system
+                    float arrowHorizontal = Input.GetAxis("Horizontal_P1");
+                    float arrowVertical = Input.GetAxis("Vertical_P1");
+
+                    // Get input from WASD keys
+                    float wasdHorizontal = 0f;
+                    float wasdVertical = 0f;
+
+                    if (Input.GetKey(KeyCode.A)) wasdHorizontal -= 1f;
+                    if (Input.GetKey(KeyCode.D)) wasdHorizontal += 1f;
+                    if (Input.GetKey(KeyCode.W)) wasdVertical += 1f;
+                    if (Input.GetKey(KeyCode.S)) wasdVertical -= 1f;
+
+                    // Use whichever input has higher value (arrows or WASD)
+                    inputVector.x = Mathf.Abs(arrowHorizontal) > Mathf.Abs(wasdHorizontal) ? arrowHorizontal : wasdHorizontal;
+                    inputVector.y = Mathf.Abs(arrowVertical) > Mathf.Abs(wasdVertical) ? arrowVertical : wasdVertical;
                     break;
 
                 case 2:
