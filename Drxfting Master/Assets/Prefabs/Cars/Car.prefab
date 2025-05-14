@@ -11520,7 +11520,7 @@ MonoBehaviour:
   frontRightWheel: {fileID: 0}
   maxWheelTurnAngle: 30
   carSpriteRenderer: {fileID: 6558350185083141112}
-  carShadowRenderer: {fileID: 733638173380642315}
+  carShadowRenderer: {fileID: 0}
   jumpCurve:
     serializedVersion: 2
     m_Curve:
