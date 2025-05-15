@@ -3473,6 +3473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862631823112541319, guid: 46134e6d1ef01f94791a66b8ab28703d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862631823112541319, guid: 46134e6d1ef01f94791a66b8ab28703d,
+        type: 3}
       propertyPath: jumpPushScale
       value: 2
       objectReference: {fileID: 0}

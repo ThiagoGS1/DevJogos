@@ -6,40 +6,64 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu_Main.unity
+    guid: 476d7a19cfa6e0b4b9bdc629ed27e236
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: bec62098aeea28746b7996b2453658e2
-  - enabled: 1
-    path: Assets/Scenes/fase1.unity
-    guid: 72e04d0ff6fb87e489c0653e951009b8
-  - enabled: 1
-    path: Assets/Scenes/fase2.unity
-    guid: d9637ffe678ef9649acef466eb74fddf
-  - enabled: 1
-    path: Assets/Scenes/Stage2.unity
-    guid: b0205ab0c21af6942929bdaadfb21b18
-  - enabled: 1
-    path: Assets/Scenes/Example cases/TouchInput.unity
-    guid: 0240d26010020824abfabe7a4ee9155c
-  - enabled: 1
-    path: Assets/Scenes/Example cases/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Example cases/SpawnCar.unity
-    guid: 7bd6c5c37190e184497fa71a848a8552
-  - enabled: 1
-    path: Assets/Scenes/Stage1.unity
-    guid: a0a9c646c472433448563fc9297b15e5
-  - enabled: 1
-    path: Assets/Scenes/Stage3.unity
-    guid: c514aa0e8a735a44f8c711ae166f58d3
-  - enabled: 1
-    path: Assets/Scenes/Stage4.unity
-    guid: 5eba7b660b1380e47927b3228a129d98
   - enabled: 1
     path: Assets/Scenes/Dialogue1.unity
     guid: 26aed90149f20a2418294cd3e65b1da7
   - enabled: 1
     path: Assets/Scenes/Dialogue2.unity
     guid: 381afdd48c7c63e4983cc2a529cc56cd
+  - enabled: 1
+    path: Assets/Scenes/fase.unity
+    guid: b51b6e236ca99b743ac6f0c07c115b01
+  - enabled: 1
+    path: Assets/Scenes/Dialogue3.unity
+    guid: 4ef9b908da135194f962887ef298b835
+  - enabled: 1
+    path: Assets/Scenes/fase2.unity
+    guid: d9637ffe678ef9649acef466eb74fddf
+  - enabled: 1
+    path: Assets/Scenes/Dialogue4.unity
+    guid: 4fcaedbb54d95704db804ceac907475b
+  - enabled: 1
+    path: Assets/Scenes/Dialogue5.unity
+    guid: 19a507e005da2464aa4d1c93ea9b291e
+  - enabled: 1
+    path: Assets/Scenes/fase1.unity
+    guid: 72e04d0ff6fb87e489c0653e951009b8
+  - enabled: 1
+    path: Assets/Scenes/DialogueWin.unity
+    guid: d23d42e5e1f80c94c9ea570a7202e7b6
+  - enabled: 0
+    path: Assets/Scenes/Stage2.unity
+    guid: b0205ab0c21af6942929bdaadfb21b18
+  - enabled: 0
+    path: Assets/Scenes/Example cases/TouchInput.unity
+    guid: 0240d26010020824abfabe7a4ee9155c
+  - enabled: 0
+    path: Assets/Scenes/Example cases/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Example cases/SpawnCar.unity
+    guid: 7bd6c5c37190e184497fa71a848a8552
+  - enabled: 0
+    path: Assets/Scenes/Stage1.unity
+    guid: a0a9c646c472433448563fc9297b15e5
+  - enabled: 0
+    path: Assets/Scenes/Stage3.unity
+    guid: c514aa0e8a735a44f8c711ae166f58d3
+  - enabled: 0
+    path: Assets/Scenes/Stage4.unity
+    guid: 5eba7b660b1380e47927b3228a129d98
+  - enabled: 1
+    path: Assets/Scenes/faseTutorial.unity
+    guid: 380d8c79bcad7ec4bb89e2762da77155
+  - enabled: 1
+    path: Assets/Scenes/DialogueLose.unity
+    guid: e11ccc959cff5134482de9ca066b18a6
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

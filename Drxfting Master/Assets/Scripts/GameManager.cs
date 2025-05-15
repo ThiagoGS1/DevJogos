@@ -77,10 +77,10 @@ public class GameManager : MonoBehaviour
         gameSequence.Add(new GameScene { sceneName = "Dialogue2", sceneType = SceneType.Dialogue });
         gameSequence.Add(new GameScene { sceneName = "fase", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "Dialogue3", sceneType = SceneType.Dialogue });
+        gameSequence.Add(new GameScene { sceneName = "fase2", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "Dialogue4", sceneType = SceneType.Dialogue });
         gameSequence.Add(new GameScene { sceneName = "Dialogue5", sceneType = SceneType.Dialogue });
         gameSequence.Add(new GameScene { sceneName = "fase1", sceneType = SceneType.Race });
-        gameSequence.Add(new GameScene { sceneName = "fase2", sceneType = SceneType.Race });
         gameSequence.Add(new GameScene { sceneName = "DialogueWin", sceneType = SceneType.Dialogue });
 
         CheckSceneAvailability();
